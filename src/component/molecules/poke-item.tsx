@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { getPokemonUrlImage } from "../../utils/utils";
+import { useNavigate } from "react-router-dom";
 import CardBox from "../atom/card";
+import { getPokemonUrlImageList } from "../../utils/utils";
 
 interface PokedexItemProps {
   name: string;
@@ -14,7 +14,7 @@ const PokedexItem: React.FC<PokedexItemProps> = ({ name, type, url }) => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
-    const pokemonUrlImage = getPokemonUrlImage(url);
+    const pokemonUrlImage = getPokemonUrlImageList(url);
     setImage(pokemonUrlImage);
   }, [url]);
 
@@ -35,11 +35,17 @@ const PokedexItem: React.FC<PokedexItemProps> = ({ name, type, url }) => {
       <CardBox>
         <img
           className="w-24 h-32 object-contain"
-          src={imagePokemon || (type === "fav" && url) || "/path/to/pokeBall.png"}
+          src={
+            imagePokemon ||
+            (type === "fav" && url) ||
+            "../../../public/pokeBall.png"
+          }
           alt={name}
         />
       </CardBox>
-      <p className="text-lg font-bold text-center text-neutral-800 mt-2">{name}</p>
+      <p className="text-lg font-bold text-center text-neutral-800 mt-2">
+        {name.split("-").join("\n")}
+      </p>
     </button>
   );
 };

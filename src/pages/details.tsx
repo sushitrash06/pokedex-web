@@ -8,7 +8,7 @@ import Sprite from "../component/organism/sprite";
 import AbilitiesPokemon from "../component/organism/abilities";
 
 const DetailPage: React.FunctionComponent = () => {
-  const { id } = useParams(); // Use useParams to get the id from the route
+  const { id } = useParams();
 
   const { data } = useQuery(["PokemonDetail", id], async () => {
     return await fetchPokemonDetail(parseInt(id ?? '')); // Use the id directly
@@ -32,14 +32,14 @@ const DetailPage: React.FunctionComponent = () => {
   };
 
   const stringValuesArray = getStringValues(data?.sprites || {});
-
+console.log(id, 'ini id')
   return (
     <div className="bg-white">
       <div className="relative">
         <PokemonDetail
           color={dataPokemonSpecies?.color?.name}
           name={data?.name}
-          url={getPokemonUrlImage(id ?? '')} // Use getPokemonUrlImage(id) if needed
+          url={getPokemonUrlImage(id)}
           types={data?.types}
         />
         <Sprite color={dataPokemonSpecies?.color?.name} imageUrl={stringValuesArray} />

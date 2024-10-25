@@ -7,8 +7,8 @@ const AbilitiesPokemon: React.FunctionComponent<AbilitiesPage> = ({
   stats,
 }) => {
   return (
-    <div className="m-5">
-      <h2 className="font-semibold text-lg">Abilities</h2>
+    <div className="m-5 text-black">
+      <h2 className="font-semibold text-black text-lg">Abilities</h2>
       <div className="flex flex-wrap gap-2 my-4">
         {abilities?.map((data: Abilities) => (
           <div
@@ -19,7 +19,7 @@ const AbilitiesPokemon: React.FunctionComponent<AbilitiesPage> = ({
           </div>
         ))}
       </div>
-      <div className="my-4">
+      <div className="my-4 text-black">
         {stats?.map((data: Stats) => {
           const percentage = (data.base_stat / 255) * 100;
           return (

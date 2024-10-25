@@ -9,8 +9,13 @@ export const getIdPokemon = (url: string): string => {
 };
 
 
-export const getPokemonUrlImage = (url: string): string => {
-  const id = getIdPokemon(url)
+export const getPokemonUrlImage = (id?: string): string => {
+  const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+  return imageUrl
+};
+
+export const getPokemonUrlImageList = (url: string): string => {
+  const id = getIdPokemon(url)  
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
   return imageUrl
 };

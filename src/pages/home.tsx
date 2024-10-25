@@ -51,7 +51,7 @@ const HomePage: React.FunctionComponent = () => {
       if (!keywordSearch && !selectedType) return; // Fetch only if search or type is selected
       try {
         const filteredResult = await fetchPokemonSearch(keywordSearch, selectedType); // Pass both keyword and type to the search function
-        
+
         // Filter out any null values from the filteredResult
         const validResults = filteredResult.filter((result) => result !== null) as Pokemon[]; // Type assertion here
 
@@ -76,8 +76,18 @@ const HomePage: React.FunctionComponent = () => {
     }, 2000);
   };
 
-  const handleLoadMore = () => {
-    if (hasNextPage && !isFetchingNextPage) {
+  const handleLoadMore = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+
+    // Log for debugging purposes
+    console.log("scrollTop", scrollTop);
+    console.log("scrollHeight", scrollHeight);
+    console.log("clientHeight", clientHeight);
+    console.log("hasNextPage", hasNextPage);
+    console.log("isFetchingNextPage", isFetchingNextPage);
+
+    // Check if user has scrolled close to the bottom (90% of the scroll height)
+    if (scrollTop + clientHeight >= scrollHeight * 0.9 && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
   };
@@ -86,16 +96,17 @@ const HomePage: React.FunctionComponent = () => {
     <div className="flex flex-col h-screen bg-[#242525] border-white border-8">
       <div className="relative flex-1 overflow-y-auto p-4" onScroll={handleLoadMore}>
         <form onSubmit={handleSubmit(onSubmit)} className="m-5">
-          <InputComponent
-            control={control}
-            name="search"
-            placeholder="Search by name ..."
-            className="h-12 px-4 bg-green-300 rounded-full focus:outline-none"
+          <InputComponent 
+            control={control} 
+            name="search" 
+            placeholder="Search by name ..." 
+            className="h-12 px-4 bg-gray-50 border border-gray-200 rounded-lg mr-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
           />
-          <select
-            className="h-12 px-4 bg-green-300 rounded-full mt-2"
+
+          <select 
+            className="h-12 px-4 bg-white border border-gray-200 rounded-lg mt-2 text-gray-700 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)} // Update selected type on change
+            onChange={(e) => setSelectedType(e.target.value)}
           >
             <option value="">Select a type...</option>
             {types.map((type) => (
@@ -120,6 +131,9 @@ const HomePage: React.FunctionComponent = () => {
             }
           />
         )}
+
+        {/* Show loading indicator when fetching the next page */}
+        {isFetchingNextPage && <Loading />}
       </div>
     </div>
   );

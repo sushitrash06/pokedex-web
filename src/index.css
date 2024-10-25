@@ -8,7 +8,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
   background-color: #151414;
 
   font-synthesis: none;
@@ -40,6 +39,7 @@ button {
   background-color: #dddddd;
   cursor: pointer;
   transition: border-color 0.25s;
+  max-width: 180px;
 }
 button:hover {
   border-color: #64ffe5;

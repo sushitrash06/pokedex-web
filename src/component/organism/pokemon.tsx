@@ -9,14 +9,14 @@ const PokemonDetail: React.FunctionComponent<PokemonHeadDetail> = ({
   color,
   types,
 }) => {
-
+console.log(url)
   return (
     <div className="flex flex-col items-center">
       <div className="relative w-full h-[350px] flex items-center justify-center" style={{ backgroundColor: color }}>
         <div className="absolute inset-0 bg-white opacity-40" />
         <img
           className="w-[300px] h-[300px] object-cover mt-5 z-10"
-          src={url || "../../../../assets/pokeBall.png"}
+          src={url}
           alt={name}
         />
       </div>
