@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { Pokemon } from "../utils/type";
 import { useInfiniteQuery } from "react-query";
 import { fetchPokemonList } from "../server/api";
@@ -7,11 +6,6 @@ import { fetchPokemonSearch, fetchPokemonTypes } from "../utils/utils";
 import Loading from "../component/atom/loading";
 import ListPokemon from "../component/organism/list-pokemon";
 import { useSearch } from "../context/seacrh-context";
-
-interface FormValues {
-  search: string;
-  type: string;
-}
 
 const HomePage: React.FunctionComponent = () => {
 
