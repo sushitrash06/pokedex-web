@@ -4,7 +4,6 @@ import CardBox from "../atom/card";
 import { getPokemonUrlImageList } from "../../utils/utils";
 import { useQuery } from "react-query";
 import { fetchPokemonSpecies } from "../../server/api";
-import { TYPE_COLORS } from "../../utils/constans";
 
 interface PokedexItemProps {
   name: string;
