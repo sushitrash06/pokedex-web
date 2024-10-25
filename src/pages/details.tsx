@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom"; // Import useParams
 import { useQuery } from "react-query";
-import { getIdPokemon, getPokemonUrlImage } from "../utils/utils";
+import { getPokemonUrlImage } from "../utils/utils";
 import { fetchPokemonDetail, fetchPokemonSpecies } from "../server/api";
 import PokemonDetail from "../component/organism/pokemon";
 import Sprite from "../component/organism/sprite";
