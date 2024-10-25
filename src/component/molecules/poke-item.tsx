@@ -38,7 +38,7 @@ const PokedexItem: React.FC<PokedexItemProps> = ({ name, type, url }) => {
           src={
             imagePokemon ||
             (type === "fav" && url) ||
-            "../../../public/pokeBall.png"
+            "/pokeBall.png"
           }
           alt={name}
         />

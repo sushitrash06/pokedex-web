@@ -4,7 +4,7 @@ const Loading: React.FunctionComponent = () => {
   return (
     <div className="w-full flex justify-center">
       <img
-        src="../../../public/pikachu-running.gif"
+        src="/pikachu-running.gif"
         alt="Loading"
         className="w-24 h-24 object-contain"
       />
