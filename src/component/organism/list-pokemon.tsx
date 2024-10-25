@@ -15,7 +15,7 @@ const ListPokemon: React.FunctionComponent<PropsList> = ({
   type,
 }) => {
   return (
-    <div className="grid grid-cols-5 gap-4 p-4 justify-stretch">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4">
       {dataList.map((pokemon: Pokemon, index: number) => (
         <div key={index} className="mb-4">
           <PokedexItem
