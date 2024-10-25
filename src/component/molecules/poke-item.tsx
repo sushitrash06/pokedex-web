@@ -38,8 +38,8 @@ const PokedexItem: React.FC<PokedexItemProps> = ({ name, type, url }) => {
           src={imagePokemon || (type === "fav" && url) || "/path/to/pokeBall.png"}
           alt={name}
         />
-        <p className="text-lg font-bold text-center text-gray-200 mt-2">{name}</p>
       </CardBox>
+      <p className="text-lg font-bold text-center text-neutral-800 mt-2">{name}</p>
     </button>
   );
 };

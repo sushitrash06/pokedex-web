@@ -83,8 +83,8 @@ const HomePage: React.FunctionComponent = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-400">
-      <div className="relative flex-1 overflow-y-auto" onScroll={handleLoadMore}>
+    <div className="flex flex-col h-screen bg-[#242525] border-white border-8">
+      <div className="relative flex-1 overflow-y-auto p-4" onScroll={handleLoadMore}>
         <form onSubmit={handleSubmit(onSubmit)} className="m-5">
           <InputComponent
             control={control}

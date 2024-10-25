@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
           : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto flex justify-center">
+      <div className="container mx-auto flex justify-center mb-4">
         <a href="/">
           <img
             src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png"
