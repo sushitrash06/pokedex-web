@@ -32,7 +32,7 @@ const DetailPage: React.FunctionComponent = () => {
   };
 
   const stringValuesArray = getStringValues(data?.sprites || {});
-console.log(id, 'ini id')
+
   return (
     <div className="bg-white">
       <div className="relative">

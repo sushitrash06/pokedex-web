@@ -6,7 +6,7 @@ interface CardBoxProps {
 
 const CardBox: React.FC<CardBoxProps> = ({ children }) => {
     return (
-      <div className="w-36 h-44 flex flex-col items-center justify-center min-w-['40px'] rounded-lg bg-[#020202e2]">
+      <div className=" w-36 h-44 flex flex-col items-center justify-center min-w-['40px'] rounded-lg">
         {children}
       </div>
     );

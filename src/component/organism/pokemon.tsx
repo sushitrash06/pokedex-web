@@ -9,7 +9,6 @@ const PokemonDetail: React.FunctionComponent<PokemonHeadDetail> = ({
   color,
   types,
 }) => {
-console.log(url)
   return (
     <div className="flex flex-col items-center">
       <div className="relative w-full h-[350px] flex items-center justify-center" style={{ backgroundColor: color }}>

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CardBox from "../atom/card";
 import { getPokemonUrlImageList } from "../../utils/utils";
+import { useQuery } from "react-query";
+import { fetchPokemonSpecies } from "../../server/api";
+import { TYPE_COLORS } from "../../utils/constans";
 
 interface PokedexItemProps {
   name: string;
@@ -11,7 +14,7 @@ interface PokedexItemProps {
 
 const PokedexItem: React.FC<PokedexItemProps> = ({ name, type, url }) => {
   const [imagePokemon, setImage] = useState("");
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const pokemonUrlImage = getPokemonUrlImageList(url);
@@ -19,22 +22,28 @@ const PokedexItem: React.FC<PokedexItemProps> = ({ name, type, url }) => {
   }, [url]);
 
   const getIdFromUrl = (url: string) => {
-    const idMatch = url.match(/\/(\d+)(\/)?$/); // Extract the ID using regex
+    const idMatch = url.match(/\/(\d+)(\/)?$/);
     return idMatch ? idMatch[1] : null;
   };
-
+  const id = getIdFromUrl(url);
   const navigateToDetailPage = () => {
-    const id = getIdFromUrl(url); // Get the ID from the URL
     if (id) {
-      navigate(`/detail/${id}`); // Navigate to the detail page with the ID
+      navigate(`/detail/${id}`);
     }
   };
 
+  const { data: dataPokemonSpecies } = useQuery(["PokemonSpecies", id], async () => {
+    return await fetchPokemonSpecies(parseInt(id ?? '')); // Use the id directly
+  });
+
+  console.log(dataPokemonSpecies)
+
   return (
-    <button onClick={navigateToDetailPage} className="focus:outline-none">
+    <div onClick={navigateToDetailPage}  className="rounded-xl cursor-pointer relative w-full h-[350px] flex items-center justify-center" style={{ backgroundColor: dataPokemonSpecies?.color?.name }}>
+      <div className="absolute rounded-xl inset-0 bg-white opacity-40 hover:opacity-30" />
       <CardBox>
         <img
-          className="w-24 h-32 object-contain"
+          className="w-24 h-32 object-contain z-10"
           src={
             imagePokemon ||
             (type === "fav" && url) ||
@@ -42,11 +51,12 @@ const PokedexItem: React.FC<PokedexItemProps> = ({ name, type, url }) => {
           }
           alt={name}
         />
-      </CardBox>
-      <p className="text-lg font-bold text-center text-neutral-800 mt-2">
+          <p className="text-lg font-bold text-center text-neutral-800 mt-2 z-10">
         {name.split("-").join("\n")}
       </p>
-    </button>
+      </CardBox>
+    </div>
+
   );
 };
 
